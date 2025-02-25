@@ -16,9 +16,11 @@
             #binding-cells = <0>;
             bindings =
                 <&macro_press &kp LALT>,
-                <&macro_tap &kp N1 &kp N3 &kp N4>,
+                <&macro_tap &kp N1>,
+                <&macro_tap &kp N3>,
+                <&macro_tap &kp N4>,
                 <&macro_release &kp LALT>;
- // Unicode for Å
+            // Unicode for Å
             label = "NORDIC_A";
         };
     };
