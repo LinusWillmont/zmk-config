@@ -17,70 +17,105 @@
             wait-ms = <0>;
             tap-ms = <0>;
             bindings =
-                <&macro_press &kp LALT>,
-                <&macro_tap &kp KP_N1 &kp KP_N3 &kp KP_N4>,
-                <&macro_release &kp LALT>;
+                <&macro_press>,
+                <&kp LALT>,
+                <&macro_tap>,
+                <&kp KP_N1 &kp KP_N3 &kp KP_N4>,
+                <&macro_release>,
+                <&kp LALT>;
+
             // Unicode for å
+
             label = "NORDIC_A";
         };
+
         nordic_ae: nordic_ae {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <0>;
             tap-ms = <0>;
             bindings =
-                <&macro_press &kp LALT>,
-                <&macro_tap &kp KP_N1 &kp KP_N3 &kp KP_N2>,
-                <&macro_release &kp LALT>;
+                <&macro_press>,
+                <&kp LALT>,
+                <&macro_tap>,
+                <&kp KP_N1 &kp KP_N3 &kp KP_N2>,
+                <&macro_release>,
+                <&kp LALT>;
+
             // Unicode for ä
+
             label = "NORDIC_AE";
         };
+
         nordic_o: nordic_o {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <0>;
             tap-ms = <0>;
             bindings =
-                <&macro_press &kp LALT>,
-                <&macro_tap &kp KP_N1 &kp KP_N4 &kp KP_N8>,
-                <&macro_release &kp LALT>;
+                <&macro_press>,
+                <&kp LALT>,
+                <&macro_tap>,
+                <&kp KP_N1 &kp KP_N4 &kp KP_N8>,
+                <&macro_release>,
+                <&kp LALT>;
+
             // Unicode for ö
+
             label = "NORDIC_O";
         };
+
         nordic_capital_a: nordic_capital_a {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <0>;
             tap-ms = <0>;
             bindings =
-                <&macro_press &kp LALT>,
-                <&macro_tap &kp KP_N1 &kp KP_N4 &kp KP_N3>,
-                <&macro_release &kp LALT>;
+                <&macro_press>,
+                <&kp LALT>,
+                <&macro_tap>,
+                <&kp KP_N1 &kp KP_N4 &kp KP_N3>,
+                <&macro_release>,
+                <&kp LALT>;
+
             // Unicode for Å
+
             label = "NORDIC_CAPITAL_A";
         };
+
         nordic_capital_ae: nordic_capital_ae {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <0>;
             tap-ms = <0>;
             bindings =
-                <&macro_press &kp LALT>,
-                <&macro_tap &kp KP_N1 &kp KP_N4 &kp KP_N2>,
-                <&macro_release &kp LALT>;
+                <&macro_press>,
+                <&kp LALT>,
+                <&macro_tap>,
+                <&kp KP_N1 &kp KP_N4 &kp KP_N2>,
+                <&macro_release>,
+                <&kp LALT>;
+
             // Unicode for Ä
+
             label = "NORDIC_CAPITAL_AE";
         };
+
         nordic_capital_o: nordic_capital_o {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <0>;
             tap-ms = <0>;
             bindings =
-                <&macro_press &kp LALT>,
-                <&macro_tap &kp KP_N1 &kp KP_N5 &kp KP_N3>,
-                <&macro_release &kp LALT>;
+                <&macro_press>,
+                <&kp LALT>,
+                <&macro_tap>,
+                <&kp KP_N1 &kp KP_N5 &kp KP_N3>,
+                <&macro_release>,
+                <&kp LALT>;
+
             // Unicode for Ö
+
             label = "NORDIC_CAPITAL_O";
         };
     };
@@ -90,6 +125,24 @@
             compatible = "zmk,behavior-mod-morph";
             label = "NORD_MOD_A";
             bindings = <&nordic_a>, <&nordic_capital_a>;
+
+            #binding-cells = <0>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        nord_mod_ae: nord_mod_ae {
+            compatible = "zmk,behavior-mod-morph";
+            label = "NORD_MOD_AE";
+            bindings = <&nordic_ae>, <&nordic_capital_ae>;
+
+            #binding-cells = <0>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        nord_mod_o: nord_mod_o {
+            compatible = "zmk,behavior-mod-morph";
+            label = "NORD_MOD_O";
+            bindings = <&nordic_o>, <&nordic_capital_o>;
 
             #binding-cells = <0>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
@@ -146,10 +199,10 @@
             //                     |      |      |      |        |  |       |      |       |       |
 
             bindings = <
-&kp F1          &kp F2  &kp F3  &kp F4        &kp F5        &kp F6                            &kp F7       &kp F8     &kp F9     &kp F10    &kp F11    &kp F12
-&kp TAB         &trans  &trans  &kp N7        &kp N8        &kp N9                            &trans       &trans     &trans     &trans     &trans     &nord_mod_a
-&kp LCTRL       &trans  &trans  &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6                      &kp LEFT     &kp DOWN   &kp UP     &kp RIGHT  &nordic_o  &nordic_ae
-&kp LEFT_SHIFT  &trans  &trans  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &trans    &trans    &kp KP_PLUS  &kp MINUS  &kp EQUAL  &trans     &trans     &kp BSLH
+&kp F1          &kp F2  &kp F3  &kp F4        &kp F5        &kp F6                            &kp F7       &kp F8     &kp F9     &kp F10    &kp F11      &kp F12
+&kp TAB         &trans  &trans  &kp N7        &kp N8        &kp N9                            &trans       &trans     &trans     &trans     &trans       &nord_mod_a
+&kp LCTRL       &trans  &trans  &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6                      &kp LEFT     &kp DOWN   &kp UP     &kp RIGHT  &nord_mod_o  &nord_mod_ae
+&kp LEFT_SHIFT  &trans  &trans  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &trans    &trans    &kp KP_PLUS  &kp MINUS  &kp EQUAL  &trans     &trans       &kp BSLH
                                 &trans        &trans        &trans        &kp N0    &kp CAPS  &trans       &trans     &trans
             >;
 
