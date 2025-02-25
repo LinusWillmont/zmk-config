@@ -17,9 +17,9 @@
         wait-ms = <0>;
         tap-ms = <0>;
         bindings =
-            <&macro_press &kp lalt>,
-            <&macro_tap &kp kp_n1 &kp kp_n3 &kp kp_n4>,
-            <&macro_release &kp lalt>;
+            <&macro_press &kp LALT>,
+            <&macro_tap &kp KP_N1 &kp KP_N3 &kp KP_N4>,
+            <&macro_release &kp LALT>;
         // Unicode for Å
         label = "NORDIC_A";
     };
@@ -29,9 +29,9 @@
         wait-ms = <0>;
         tap-ms = <0>;
         bindings =
-            <&macro_press &kp lalt>,
-            <&macro_tap &kp kp_n1 &kp kp_n3 &kp kp_n2>,
-            <&macro_release &kp lalt>;
+            <&macro_press &kp LALT>,
+            <&macro_tap &kp KP_N1 &kp KP_N3 &kp KP_N2>,
+            <&macro_release &kp LALT>;
         // Unicode for Ä
         label = "NORDIC_AE";
     };
@@ -41,9 +41,9 @@
         wait-ms = <0>;
         tap-ms = <0>;
         bindings =
-            <&macro_press &kp lalt>,
-            <&macro_tap &kp kp_n1 &kp kp_n4 &kp kp_n8>,
-            <&macro_release &kp lalt>;
+            <&macro_press &kp LALT>,
+            <&macro_tap &kp KP_N1 &kp KP_N4 &kp KP_N8>,
+            <&macro_release &kp LALT>;
         // Unicode for Ö
         label = "NORDIC_O";
     };
@@ -53,9 +53,9 @@
         wait-ms = <0>;
         tap-ms = <0>;
         bindings =
-            <&macro_press &kp lalt>,
-            <&macro_tap &kp kp_n1 &kp kp_n4 &kp kp_n2>,
-            <&macro_release &kp lalt>;
+            <&macro_press &kp LALT>,
+            <&macro_tap &kp KP_N1 &kp KP_N4 &kp KP_N2>,
+            <&macro_release &kp LALT>;
         // Unicode for Å
         label = "NORDIC_CAPITAL_A";
     };
@@ -65,9 +65,9 @@
         wait-ms = <0>;
         tap-ms = <0>;
         bindings =
-            <&macro_press &kp lalt>,
-            <&macro_tap &kp kp_n1 &kp kp_n4 &kp kp_n3>,
-            <&macro_release &kp lalt>;
+            <&macro_press &kp LALT>,
+            <&macro_tap &kp KP_N1 &kp KP_N4 &kp KP_N3>,
+            <&macro_release &kp LALT>;
         // Unicode for Ä
         label = "NORDIC_CAPITAL_AE";
     };
@@ -77,9 +77,9 @@
         wait-ms = <0>;
         tap-ms = <0>;
         bindings =
-            <&macro_press &kp lalt>,
-            <&macro_tap &kp kp_n1 &kp kp_n5 &kp kp_n3>,
-            <&macro_release &kp lalt>;
+            <&macro_press &kp LALT>,
+            <&macro_tap &kp KP_N1 &kp KP_N5 &kp KP_N3>,
+            <&macro_release &kp LALT>;
         // Unicode for Ö
         label = "NORDIC_CAPITAL_O";
     };
