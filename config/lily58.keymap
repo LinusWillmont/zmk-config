@@ -14,8 +14,20 @@
         nordic_a: nordic_a {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp N1 &kp N3 &kp N4>;
+            bindings = <&unicode U_00C5>; // Unicode for Å
             label = "NORDIC_A";
+        };
+        nordic_ae: nordic_ae {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&unicode U_00C4>; // Unicode for Ä
+            label = "NORDIC_AE";
+        };
+        nordic_o: nordic_o {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&unicode U_00D6>; // Unicode for Ö
+            label = "NORDIC_O";
         };
     };
 
@@ -70,8 +82,8 @@
 
             bindings = <
 &kp F1          &kp F2  &kp F3  &kp F4        &kp F5        &kp F6                            &kp F7       &kp F8     &kp F9     &kp F10    &kp F11    &kp F12
-&kp TAB         &trans  &trans  &kp N7        &kp N8        &kp N9                            &trans       &trans     &trans     &trans     &trans     &trans
-&kp LCTRL       &trans  &trans  &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6                      &kp LEFT     &kp DOWN   &kp UP     &kp RIGHT  &nordic_a  &trans
+&kp TAB         &trans  &trans  &kp N7        &kp N8        &kp N9                            &trans       &trans     &trans     &trans     &trans     &NORDIC_A
+&kp LCTRL       &trans  &trans  &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6                      &kp LEFT     &kp DOWN   &kp UP     &kp RIGHT  &NORDIC_O  &NORDIC_AE
 &kp LEFT_SHIFT  &trans  &trans  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &trans    &trans    &kp KP_PLUS  &kp MINUS  &kp EQUAL  &trans     &trans     &kp BSLH
                                 &trans        &trans        &trans        &kp N0    &kp CAPS  &trans       &trans     &trans
             >;
