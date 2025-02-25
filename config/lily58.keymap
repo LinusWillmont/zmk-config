@@ -15,12 +15,19 @@
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings =
-                <&macro_press &kp LALT>,
-                <&macro_tap &kp N1>,
-                <&macro_tap &kp N3>,
-                <&macro_tap &kp N4>,
-                <&macro_release &kp LALT>;
+                <&macro_press>,
+                <&kp LALT>,
+                <&macro_tap>,
+                <&kp KP_N1>,
+                <&macro_tap>,
+                <&kp KP_N3>,
+                <&macro_tap>,
+                <&kp KP_N4>,
+                <&macro_release>,
+                <&kp LALT>;
+
             // Unicode for Å
+
             label = "NORDIC_A";
         };
     };
