@@ -12,7 +12,7 @@ manifest:
       revision: main
       import: app/west.yml
     - name: nice-view-gem
-      remote: m165437
+      remote: M165437
       main: main
   self:
     path: config
