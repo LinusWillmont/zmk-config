@@ -25,9 +25,14 @@ const lv_img_dsc_t *anim_imgs[] = {
     &crystal_13, &crystal_14, &crystal_15, &crystal_16,
 };
 
-void draw_animation(lv_obj_t *canvas) {
+LV_IMG_DECLARE(tux);
+
+static lv_obj_t *art = NULL;
+static bool art_is_tux = false;
+
+static void create_gem(lv_obj_t *canvas) {
 #if IS_ENABLED(CONFIG_NICE_VIEW_GEM_ANIMATION)
-    lv_obj_t *art = lv_animimg_create(canvas);
+    art = lv_animimg_create(canvas);
     lv_obj_center(art);
 
     lv_animimg_set_src(art, (const void **)anim_imgs, 16);
@@ -35,7 +40,7 @@ void draw_animation(lv_obj_t *canvas) {
     lv_animimg_set_repeat_count(art, LV_ANIM_REPEAT_INFINITE);
     lv_animimg_start(art);
 #else
-    lv_obj_t *art = lv_img_create(canvas);
+    art = lv_img_create(canvas);
 
     int length = sizeof(anim_imgs) / sizeof(anim_imgs[0]);
     srand(k_uptime_get_32());
@@ -47,4 +52,32 @@ void draw_animation(lv_obj_t *canvas) {
 #endif
 
     lv_obj_align(art, LV_ALIGN_TOP_LEFT, 36, 0);
+}
+
+static void create_tux(lv_obj_t *canvas) {
+    art = lv_img_create(canvas);
+    lv_img_set_src(art, &tux);
+    lv_obj_align(art, LV_ALIGN_TOP_LEFT, 36, 2);
+}
+
+static void create_art(lv_obj_t *canvas, bool os) {
+    if (art != NULL) {
+        lv_obj_delete(art);
+        art = NULL;
+    }
+    if (os) {
+        create_tux(canvas);
+    } else {
+        create_gem(canvas);
+    }
+    art_is_tux = os;
+}
+
+void draw_animation(lv_obj_t *canvas) { create_art(canvas, false); }
+
+void set_os_art(lv_obj_t *canvas, bool os) {
+    if (art != NULL && art_is_tux == os) {
+        return;
+    }
+    create_art(canvas, os);
 }

@@ -53,8 +53,18 @@ config NICE_VIEW_GEM_PROFILE_COUNT
     default 5
 
 config NICE_VIEW_GEM_OS_LAYER
-    int "Layer index that marks Linux mode (shows Tux icon, hidden from layer label); -1 disables"
+    int "Layer index that marks Linux mode (hidden from the layer label, drives the Tux art); -1 disables"
     default -1
+
+config NICE_VIEW_GEM_OS_SYNC
+    bool "Show Tux instead of the gem on the peripheral while the OS layer is active"
+    depends on ZMK_SPLIT
+    default y
+    select ZMK_HID_INDICATORS
+    select ZMK_SPLIT_PERIPHERAL_HID_INDICATORS
+    help
+      The central forwards the OS layer state to the peripheral as bit 7 of the
+      HID LED indicator byte (bits 0-4 are the real host LEDs).
 
 config NICE_VIEW_WIDGET_STATUS
     select LV_USE_LABEL

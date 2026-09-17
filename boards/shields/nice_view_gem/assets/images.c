@@ -225,38 +225,3 @@ const lv_img_dsc_t profiles = {
     .data_size = 20,
     .data = profiles_map,
 };
-#ifndef LV_ATTRIBUTE_IMG_TUX
-#define LV_ATTRIBUTE_IMG_TUX
-#endif
-
-// 12x12 penguin, 1 = foreground
-const LV_ATTRIBUTE_MEM_ALIGN LV_ATTRIBUTE_LARGE_CONST LV_ATTRIBUTE_IMG_TUX uint8_t tux_map[] = {
-#if CONFIG_NICE_VIEW_WIDGET_INVERTED
-    0x00, 0x00, 0x00, 0xff, /*Color of index 0*/
-    0xff, 0xff, 0xff, 0xff, /*Color of index 1*/
-#else
-    0xff, 0xff, 0xff, 0xff, /*Color of index 0*/
-    0x00, 0x00, 0x00, 0xff, /*Color of index 1*/
-#endif
-
-    0x0f, 0x00, // ....####....
-    0x1f, 0x80, // ...######...
-    0x16, 0x80, // ...#.##.#...  eyes
-    0x1f, 0x80, // ...######...
-    0x0f, 0x00, // ....####....  chin
-    0x39, 0xc0, // ..###..###..  shoulders
-    0x60, 0x60, // .##......##.  belly
-    0x60, 0x60, // .##......##.
-    0x60, 0x60, // .##......##.
-    0x70, 0xe0, // .###....###.
-    0xd0, 0xb0, // ##.#....#.##  feet
-    0xe0, 0x70, // ###......###
-};
-
-const lv_img_dsc_t tux = {
-    .header.cf = LV_COLOR_FORMAT_I1,
-    .header.w = 12,
-    .header.h = 12,
-    .data_size = 32,
-    .data = tux_map,
-};

@@ -8,6 +8,10 @@ LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 #include <zmk/events/usb_conn_state_changed.h>
 #include <zmk/split/bluetooth/peripheral.h>
 #include <zmk/events/split_peripheral_status_changed.h>
+#if IS_ENABLED(CONFIG_NICE_VIEW_GEM_OS_SYNC)
+#include <zmk/events/hid_indicators_changed.h>
+#include "os_sync.h"
+#endif
 #include <zmk/battery.h>
 #include <zmk/ble.h>
 #include <zmk/display.h>
@@ -99,6 +103,32 @@ ZMK_DISPLAY_WIDGET_LISTENER(widget_peripheral_status, struct peripheral_status_s
                             output_status_update_cb, get_state)
 ZMK_SUBSCRIPTION(widget_peripheral_status, zmk_split_peripheral_status_changed);
 
+#if IS_ENABLED(CONFIG_NICE_VIEW_GEM_OS_SYNC)
+/**
+ * OS (Linux) mode, forwarded from the central as HID indicator bit
+ **/
+
+struct os_state {
+    bool active;
+};
+
+static struct os_state os_get_state(const zmk_event_t *eh) {
+    const struct zmk_hid_indicators_changed *ev = as_zmk_hid_indicators_changed(eh);
+    return (struct os_state){.active = ev != NULL && (ev->indicators & NICE_VIEW_GEM_OS_INDICATOR)};
+}
+
+static void os_update_cb(struct os_state state) {
+    struct zmk_widget_screen *widget;
+    SYS_SLIST_FOR_EACH_CONTAINER(&widgets, widget, node) {
+        widget->state.os_active = state.active;
+        set_os_art(widget->obj, state.active);
+    }
+}
+
+ZMK_DISPLAY_WIDGET_LISTENER(widget_os_status, struct os_state, os_update_cb, os_get_state)
+ZMK_SUBSCRIPTION(widget_os_status, zmk_hid_indicators_changed);
+#endif
+
 /**
  * Initialization
  **/
@@ -118,6 +148,9 @@ int zmk_widget_screen_init(struct zmk_widget_screen *widget, lv_obj_t *parent) {
     sys_slist_append(&widgets, &widget->node);
     widget_battery_status_init();
     widget_peripheral_status_init();
+#if IS_ENABLED(CONFIG_NICE_VIEW_GEM_OS_SYNC)
+    widget_os_status_init();
+#endif
 
     return 0;
 }
