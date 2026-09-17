@@ -62,7 +62,7 @@ Tux art: `assets/tux.c`, 64×64 1-bit, 8 bytes/row, MSB = leftmost pixel, `1` = 
 
 CI builds on every push (`.github/workflows/build.yml` → ZMK's `build-user-config.yml`). No local toolchain needed.
 
-1. Edit `config/lily58.keymap`, commit, push.
+1. Edit `config/lily58.keymap`, commit, push to `master` (CI only builds `master`; or Actions → Run workflow).
 2. GitHub → Actions → latest run → Artifacts → `firmware` (zip). Or:
    ```sh
    gh run watch -R LinusWillmont/zmk-config            # wait for green
