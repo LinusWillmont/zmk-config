@@ -22,7 +22,9 @@ ZMK firmware config for a split Lily58. Board: `nice_nano//zmk` (nice!nano v2, Z
 * **Linux**: Alt-codes don't exist. `raise_linux` sends `AltGr+W` / `AltGr+Q` / `AltGr+P` instead, which are
   `å ä ö` in xkb's `us(altgr-intl)` variant. Shift passes through → `Å Ä Ö`.
 
-Toggle with LOWER + `1`. The toggle is per-keyboard state, not per BT profile — flip it when you move between machines.
+Toggle with LOWER + `1`. The toggle is per-keyboard state, not per BT profile, and **resets when the keyboard
+reboots/power-cycles** — flip it when you move between machines or after a restart. The left nice!view shows a
+small Tux icon next to the profile dots while Linux mode is on; the layer label keeps showing the real layer.
 Nothing in `linux_os` is bound except that override, so leaving it on by mistake only breaks `å ä ö`.
 
 ### Linux host setup (one time)
@@ -36,6 +38,18 @@ variant: "altgr-intl,",
 
 GNOME: Settings → Keyboard → add "English (intl., with AltGr dead keys)". `localectl set-x11-keymap us pc105 altgr-intl` for the console/login screen.
 Verify: `AltGr+W` in any text field should type `å`.
+
+## Display (nice!view gem)
+
+The [nice-view-gem](https://github.com/M165437/nice-view-gem) shield is **vendored** in `boards/shields/nice_view_gem`
+(no west dependency) so it can be patched. Local additions, set in `config/lily58.conf`:
+
+| option                              | what                                                     |
+|-------------------------------------|----------------------------------------------------------|
+| `CONFIG_NICE_VIEW_GEM_PROFILE_COUNT`| number of BT profile dots drawn (2)                      |
+| `CONFIG_NICE_VIEW_GEM_OS_LAYER`     | layer index shown as Tux icon and hidden from label (3)  |
+
+Tux pixel art: `tux_map` in `boards/shields/nice_view_gem/assets/images.c` (12×12, 1 bit per pixel, 2 bytes/row).
 
 ## Building
 
