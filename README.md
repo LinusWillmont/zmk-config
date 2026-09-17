@@ -22,7 +22,9 @@ ZMK firmware config for a split Lily58. Board: `nice_nano//zmk` (nice!nano v2, Z
 * **Linux**: Alt-codes don't exist. `raise_linux` sends `AltGr+W` / `AltGr+Q` / `AltGr+P` instead, which are
   `å ä ö` in xkb's `us(altgr-intl)` variant. Shift passes through → `Å Ä Ö`.
 
-Toggle with LOWER + `1`. The toggle is per-keyboard state, not per BT profile — flip it when you move between machines.
+Toggle with LOWER + `1`. The toggle is per-keyboard state, not per BT profile, and **resets when the keyboard
+reboots/power-cycles** — flip it when you move between machines or after a restart. While Linux mode is on the
+**right** nice!view shows Tux instead of the gem; the left layer label keeps showing the real layer.
 Nothing in `linux_os` is bound except that override, so leaving it on by mistake only breaks `å ä ö`.
 
 ### Linux host setup (one time)
@@ -36,6 +38,25 @@ variant: "altgr-intl,",
 
 GNOME: Settings → Keyboard → add "English (intl., with AltGr dead keys)". `localectl set-x11-keymap us pc105 altgr-intl` for the console/login screen.
 Verify: `AltGr+W` in any text field should type `å`.
+
+## Display (nice!view gem)
+
+The [nice-view-gem](https://github.com/M165437/nice-view-gem) shield is **vendored** in `boards/shields/nice_view_gem`
+(no west dependency) so it can be patched. Local additions, set in `config/lily58.conf`:
+
+| option                              | what                                                     |
+|-------------------------------------|----------------------------------------------------------|
+| `CONFIG_NICE_VIEW_GEM_PROFILE_COUNT`| number of BT profile dots drawn (2)                      |
+| `CONFIG_NICE_VIEW_GEM_OS_LAYER`     | layer index = Linux mode; hidden from label, drives Tux (3) |
+| `CONFIG_NICE_VIEW_GEM_OS_SYNC`      | forward that state to the peripheral (default y on split) |
+
+How the right half knows: ZMK has no layer-state forwarding to peripherals, but it does forward the host's HID LED
+byte (Caps/Num/Scroll...) when `CONFIG_ZMK_SPLIT_PERIPHERAL_HID_INDICATORS=y`. `widgets/os_sync.c` on the central
+re-sends that byte with **bit 7** set while layer 3 is active (50 ms after any layer/LED/endpoint change, plus every
+10 s so a rebooted right half catches up). `widgets/screen_peripheral.c` swaps the gem for `assets/tux.c` on that bit.
+
+Tux art: `assets/tux.c`, 64×64 1-bit, 8 bytes/row, MSB = leftmost pixel, `1` = ink. Made from the kernel's
+`drivers/video/logo/logo_linux_mono.pbm` scaled to 64 px, threshold 80. Any 64×64 `#`/`.` text grid converts the same way.
 
 ## Building
 
