@@ -230,11 +230,12 @@
 
         raise_linux {
             // active when RAISE + linux_os: same key positions as raise, AltGr combos from us(altgr-intl)
-            // RA(W)=å RA(P)=ö RA(Q)=ä ; Shift passes through -> Å Ö Ä
+            // row 1 (TAB row) "-" key: RA(W)=å ; row 2 (CTRL row) ";" key: RA(P)=ö, "'" key: RA(Q)=ä
+            // Shift passes through -> Å Ö Ä
             bindings = <
+&trans  &trans  &trans  &trans  &trans  &trans                    &trans  &trans  &trans  &trans  &trans     &trans
 &trans  &trans  &trans  &trans  &trans  &trans                    &trans  &trans  &trans  &trans  &trans     &kp RA(W)
 &trans  &trans  &trans  &trans  &trans  &trans                    &trans  &trans  &trans  &trans  &kp RA(P)  &kp RA(Q)
-&trans  &trans  &trans  &trans  &trans  &trans                    &trans  &trans  &trans  &trans  &trans     &trans
 &trans  &trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans     &trans
                         &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans
             >;
