@@ -56,7 +56,9 @@ re-sends that byte with **bit 7** set while layer 3 is active (50 ms after any l
 10 s so a rebooted right half catches up). `widgets/screen_peripheral.c` swaps the gem for `assets/tux.c` on that bit.
 
 Tux art: `assets/tux.c`, 64×64 1-bit, 8 bytes/row, MSB = leftmost pixel, `1` = ink. Made from the kernel's
-`drivers/video/logo/logo_linux_mono.pbm` scaled to 64 px, threshold 80. Any 64×64 `#`/`.` text grid converts the same way.
+`drivers/video/logo/logo_linux_mono.pbm` scaled to 64 px, threshold 80, then **rotated 90° clockwise** because art is
+stored in frame orientation (frame right edge = physical top; the crystal frames are stored the same way). Any 64×64
+`#`/`.` text grid converts the same way.
 
 ## Building
 
