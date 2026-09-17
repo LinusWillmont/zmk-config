@@ -4,6 +4,23 @@
 #define LV_ATTRIBUTE_MEM_ALIGN
 #endif
 
+#ifndef LV_ATTRIBUTE_IMG_TUX
+#define LV_ATTRIBUTE_IMG_TUX
+#endif
+
+// 64x64 Tux, derived from the Linux kernel's logo_linux_mono.pbm (GPL-2.0), downscaled from 80x80,
+// then rotated 90 deg clockwise: the nice!view is mounted sideways and art is stored in frame
+// orientation (frame right edge = physical top), same as the crystal frames.
+// 1 = foreground. Regenerate: see README "Display".
+const LV_ATTRIBUTE_MEM_ALIGN LV_ATTRIBUTE_LARGE_CONST LV_ATTRIBUTE_IMG_TUX uint8_t tux_map[] = {
+#if CONFIG_NICE_VIEW_WIDGET_INVERTED
+    0x00, 0x00, 0x00, 0xff, /*Color of index 0*/
+    0xff, 0xff, 0xff, 0xff, /*Color of index 1*/
+#else
+    0xff, 0xff, 0xff, 0xff, /*Color of index 0*/
+    0x00, 0x00, 0x00, 0xff, /*Color of index 1*/
+#endif
+
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // ................................................................
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // ................................................................
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // ................................................................
