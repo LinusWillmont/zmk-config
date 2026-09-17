@@ -1,6 +1,6 @@
 # zmk-config — Lily58 (nice!nano v2 + nice!view gem)
 
-ZMK firmware config for a split Lily58. Board: `nice_nano_v2`, shields:
+ZMK firmware config for a split Lily58. Board: `nice_nano//zmk` (nice!nano v2, ZMK board variant since Zephyr 4.1), shields:
 `lily58_left` / `lily58_right` + `nice_view_adapter nice_view_gem`. Keymap:
 [`config/lily58.keymap`](config/lily58.keymap), Kconfig: [`config/lily58.conf`](config/lily58.conf).
 
