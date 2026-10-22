@@ -23,5 +23,10 @@ include:
     shield: lily58_left nice_view_adapter nice_view_gem
   - board: nice_nano//zmk
     shield: lily58_right nice_view_adapter nice_view_gem
+  # splitkb Aurora Lily58 (no LEDs populated -> nice!view CS bodged to P0.06 = adapter default)
+  - board: nice_nano//zmk
+    shield: splitkb_aurora_lily58_left nice_view_adapter nice_view_gem
+  - board: nice_nano//zmk
+    shield: splitkb_aurora_lily58_right nice_view_adapter nice_view_gem
   - board: nice_nano//zmk
     shield: settings_reset

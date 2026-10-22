@@ -1,0 +1,6 @@
+/*
+ * splitkb Aurora Lily58 — same keymap as the original Lily58.
+ * Both shields use the kata0510 lily58 physical layout, so the 58-key binding
+ * order is identical; keep edits in lily58.keymap so both boards stay in sync.
+ */
+#include "lily58.keymap"

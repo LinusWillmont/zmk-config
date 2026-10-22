@@ -1,8 +1,26 @@
-# zmk-config — Lily58 (nice!nano v2 + nice!view gem)
+# zmk-config — Lily58 + Aurora Lily58 (nice!nano v2 + nice!view gem)
 
 ZMK firmware config for a split Lily58. Board: `nice_nano//zmk` (nice!nano v2, ZMK board variant since Zephyr 4.1), shields:
 `lily58_left` / `lily58_right` + `nice_view_adapter nice_view_gem`. Keymap:
 [`config/lily58.keymap`](config/lily58.keymap), Kconfig: [`config/lily58.conf`](config/lily58.conf).
+
+## Second board: splitkb Aurora Lily58
+
+Same `build.yaml`, shields `splitkb_aurora_lily58_left` / `_right` + `nice_view_adapter nice_view_gem`.
+[`config/splitkb_aurora_lily58.keymap`](config/splitkb_aurora_lily58.keymap) just `#include`s `lily58.keymap`
+(both shields use ZMK's `kata0510/lily58` physical layout, so the 58 bindings map 1:1); edit `lily58.keymap` for both.
+[`config/splitkb_aurora_lily58.conf`](config/splitkb_aurora_lily58.conf) is a copy of `lily58.conf`.
+
+**nice!view wiring on the Aurora:** the Aurora OLED socket is 4-pin; the nice!view's 5th pin (CS) is a bodge wire
+to the nice!nano `006` pad (Pro Micro D1), which is `nice_view_adapter`'s default `cs-gpios`. On the Aurora PCB that
+pad is also the WS2812 RGB data line, so this only works with **no RGB LEDs populated**. If LEDs are ever added, move
+CS to a free inner pad (e.g. P1.07) and add `config/splitkb_aurora_lily58.overlay`:
+
+```dts
+&nice_view_spi { cs-gpios = <&gpio1 7 GPIO_ACTIVE_HIGH>; };
+```
+
+Firmware files: `splitkb_aurora_lily58_left…uf2` / `splitkb_aurora_lily58_right…uf2` in the same `firmware` artifact.
 
 ## Layers
 
