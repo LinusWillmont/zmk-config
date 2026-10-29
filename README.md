@@ -91,6 +91,9 @@ CI builds on every push (`.github/workflows/build.yml` → ZMK's `build-user-con
    ```
 3. Flash (below).
 
+ZMK is pinned to a commit in `config/west.yml` (`revision:`). To upgrade: set it to a newer
+`zmkfirmware/zmk` main SHA, push, flash both halves.
+
 Keymap edits only need the **left (central) half** flashed. Flash both when changing `west.yml`, ZMK version,
 shields, or `.conf`.
 
